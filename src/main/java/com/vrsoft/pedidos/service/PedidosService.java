@@ -23,10 +23,8 @@ public class PedidosService {
 
     @Value("${app.queues.entrada}")
     private String entradaQueue;
-
     @Value("${app.queues.statusSucesso}")
     private String statusSucessoQueue;
-
     @Value("${app.queues.statusFalha}")
     private String statusFalhaQueue;
 
