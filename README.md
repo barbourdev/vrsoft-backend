@@ -1,9 +1,25 @@
 # Backend - VR Software
 
+sistema de Pedidos - Backend (Spring Boot + RabbitMQ)
+
+aplicacao **Spring Boot** responsavel por receber pedidos, publicar em uma fila do **RabbitMQ**, processar de forma assincrona e atualizar o status
+
+faz parte do sistema junto com o **frontend Swing**
+
 ## Tecnologias utilizadas
 - Java 21 / Spring Boot  
 - RabbitMQ / Mensageria  
 - Maven   
+
+---
+
+## Funcionalidades
+- endpoint **POST /api/pedidos** -> cria e enfileira pedidos 
+- endpoint **GET /api/pedidos/status/{id}** -> retorna status atual do pedido
+- integracao com **RabbitMQ** para processamento assincrono 
+- dead Letter Queue (DLQ) configurada para falhas  
+- validacoes no DTO (produto obrigatorio, quantidade minima)  
+- tratamento de erros com mensagens em pt-br
 
 ---
 
@@ -37,7 +53,7 @@
 
 ---
 
-## Endpoints
+## endpoints
 - GET /api/pedidos/status/{ID_PRODUTO} -> buscar um pedido pelo ID
 - POST /api/pedidos -> cria um pedido por um body
 
@@ -47,6 +63,12 @@
     "quantidade": 5
   }
 ```
+
+## fila principal e DLQ
+app.queues.entrada=pedidos.entrada.${app.user}<br>
+app.queues.entradaDlq=pedidos.entrada.${app.user}.dlq<br>
+app.queues.statusSucesso=pedidos.status.sucesso.${app.user}<br>
+app.queues.statusFalha=pedidos.status.falha.${app.user}<br>
 
 ---
 
