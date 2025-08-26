@@ -24,19 +24,18 @@ faz parte do sistema junto com o **frontend Swing**
 ---
 
 ## Estrutura do projeto
-- src/
-- main/java
-- controller   -> Endpoints REST
-- dto          -> DTOs
-- entity       -> Classe do projeto
-- exception    -> Tratamento de erros
-- service      -> Regras de negocio
-- repository   -> Acesso a memoria
-- config       -> Configurações
-- /resources/
-- application.properties
-- /test/
-- PedidosService.java -> Teste de insercao na fila do rabbit
+
+  ```
+  src/main/java/com/vrsoft/pedidos
+   ├── config/RabbitConfig.java # configs do RabbitMQ 
+   ├── controller/PedidosController.java # endpoints
+   ├── dto/PedidoDTO.java # objeto de tranferencia dos dados do pedido
+   ├── dto/StatusPedidoDTO.java # DTO status
+   ├── entity/Pedido.java # entidade do pedido
+   ├── repository/PedidoRepository.java# repositorio
+   ├── service/PedidosService.java # regras de negocio e integracao com RabbitMQ
+   └── exception/GlobalExceptionHandler.java # tratamento dos erros
+  ```
 ---
 
 ## Como rodar o projeto localmente
